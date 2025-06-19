@@ -1,0 +1,40 @@
+<div class="padding-global padding-section-small"><div class="container-large-2"><div class="cart_grid-wrapper"><div class="cart_table outline-solid-1"><div class="cart_grid is-header is-order"><div id="w-node-_21bbed1f-8711-e37b-7260-b42b30a14157-3d3cf256" class="text-size-regular-3">Name</div><div id="w-node-_21bbed1f-8711-e37b-7260-b42b30a14159-3d3cf256" class="text-size-regular-3">Quantity</div><div id="w-node-_21bbed1f-8711-e37b-7260-b42b30a1415b-3d3cf256" class="text-size-regular-3 hide-mobile-portrait">Price</div><div id="w-node-_21bbed1f-8711-e37b-7260-b42b30a1415d-3d3cf256" class="text-size-regular-3">Sum</div></div>{% for item in order.line_items %}    <div li-for="item in order.line_items" class="cart_grid is-order">
+                                    
+                            <div li-object="item.product.title" id="w-node-_21bbed1f-8711-e37b-7260-b42b30a14160-3d3cf256" class="text-size-regular-3">{{ item.product.title }}</div>
+                            
+                            <div li-object="item.quantity" id="w-node-_21bbed1f-8711-e37b-7260-b42b30a14162-3d3cf256" class="text-size-regular-3">{{ item.quantity }}</div>
+                            
+                            <div li-object="item.unit_price" id="w-node-_21bbed1f-8711-e37b-7260-b42b30a14164-3d3cf256" class="text-size-regular-3 hide-mobile-portrait">{{ item.unit_price }}</div>
+                            
+                            <div li-object="item.final_line_price | money" id="w-node-_21bbed1f-8711-e37b-7260-b42b30a14166-3d3cf256" class="text-size-regular-3">{{ item.final_line_price | money }}</div>
+                            
+                        </div>
+{% endfor %}<div><div class="order_line"><div class="text-size-regular-3">Subtotal</div><div li-object="order.subtotal_price | money">{{ order.subtotal_price | money }}</div></div>{% for line_item in order.line_items %}    <div li-for="line_item in order.line_items">
+                                    
+                            {% for discount in line_item.discount_allocations %}    <div li-for="discount in line_item.discount_allocations" class="order_line">
+                                    
+                            <div li-object="discount.discount_application.title" class="text-size-regular-3">{{ discount.discount_application.title }}</div>
+                            
+                            <div li-object="discount.amount | money">{{ discount.amount | money }}</div>
+                            
+                        </div>
+{% endfor %}
+                            
+                        </div>
+{% endfor %}{% for shipping_line in order.shipping_lines %}    <div li-for="shipping_line in order.shipping_lines" class="order_line">
+                                    
+                            <div li-object="shipping_line.title" class="text-size-regular-3">{{ shipping_line.title }}</div>
+                            
+                            <div li-object="shipping_line.price | money" class="text-size-regular-3">{{ shipping_line.price | money }}</div>
+                            
+                        </div>
+{% endfor %}{% for tax_line in order.tax_lines %}    <div li-for="tax_line in order.tax_lines" class="order_line">
+                                    
+                            <div class="display-inlineflex"><div li-object="tax_line.title" class="text-size-regular-3">{{ tax_line.title }}</div><div class="text-size-regular-3">(<span li:object="tax_line.rate | times: 100">19</span>)</div></div>
+                            
+                            <div li-object="tax_line.price | money" class="text-size-regular-3">{{ tax_line.price | money }}</div>
+                            
+                        </div>
+{% endfor %}<div class="order_line"><div>Sum</div><div li-object="order.total_price | money">{{ order.total_price | money }}</div></div></div></div><div id="w-node-_21bbed1f-8711-e37b-7260-b42b30a14189-3d3cf256" class="cart_table outline-solid-1"><div class="cart_grid is-header"><div id="w-node-_21bbed1f-8711-e37b-7260-b42b30a1418b-3d3cf256" class="cart_table-header"><div class="text-size-regular-3">Customer Information</div></div></div><div class="addresses_account-wrapper content-grid"><div><div li-object="order.name" class="text-size-regular-3">{{ order.name }}</div><div li-object="order.created_at | date: '%e.%m.%Y'" class="text-size-regular-3">{{ order.created_at | date: '%e.%m.%Y' }}</div>{% if order.cancelled == true %}    <div li-if="order.cancelled == true" class="order_wrapper">
+    <div class="text-size-regular-3">Canceled at: </div><div li-object="order.cancelled_at | date: '%e.%m.%Y'" class="text-size-regular-3">{{ order.cancelled_at | date: '%e.%m.%Y' }}</div>    </div>
+{% endif %}<div liquid:if="order.cancelled == true" class="order_wrapper"><div class="text-size-regular-3">Reason: </div><div li-object="order.cancel_reason_label" class="text-size-regular-3">{{ order.cancel_reason_label }}</div></div></div><div><div class="text-size-regular-3">Billing Address:</div><div li-object="order.billing_address | format_address" class="text-size-regular-3">{{ order.billing_address | format_address }}</div></div><div><div class="text-size-regular-3">Shipping Address:</div><div li-object="order.shipping_address | format_address" class="text-size-regular-3">{{ order.shipping_address | format_address }}</div></div></div></div></div></div></div> {% schema %} {"tag":"section","name":"Order","class":"section_account","presets":[{"name":"Order","category":"Liquify","blocks":[]}]} {% endschema %}

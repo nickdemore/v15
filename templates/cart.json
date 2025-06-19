@@ -1,0 +1,12 @@
+{
+    "sections": {
+        "cart": {
+            "type": "cart"
+        }
+    },
+    "layout": "cart",
+    "wrapper": "main.apge-wrapper",
+    "order": [
+        "cart"
+    ]
+}
