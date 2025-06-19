@@ -1,0 +1,16 @@
+{
+    "sections": {
+        "intro_page": {
+            "type": "intro_page"
+        },
+        "intro_images": {
+            "type": "intro_images"
+        }
+    },
+    "layout": "theme",
+    "wrapper": "main.home_wrap",
+    "order": [
+        "intro_page",
+        "intro_images"
+    ]
+}

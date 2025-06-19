@@ -1,0 +1,8 @@
+<div class="padding-global padding-section-small"><div class="container-large-2"><div class="blog_cms-wrapper w-dyn-list">{% if blog.articles != blank %}    <div li-if="blog.articles != blank" role="list" class="blog_list w-dyn-items">
+    {% for article in blog.articles %}    <div li-for="article in blog.articles" role="listitem" class="blog_cms-item w-dyn-item">
+                                    
+                        </div>
+{% endfor %}    </div>
+{% endif %}{% if blog.articles == blank %}    <div li-if="blog.articles == blank" class="blog_cms-empty w-dyn-empty">
+    <div>No blog items found.</div>    </div>
+{% endif %}</div></div></div> {% schema %} {"tag":"section","name":"Blog-Articles","class":"section_blog-list","presets":[{"name":"Blog-Articles","category":"Liquify","blocks":[]}]} {% endschema %}

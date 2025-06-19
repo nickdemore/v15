@@ -1,0 +1,22 @@
+<div class="container-large">{% paginate collection.products by 50 %}
+    <div li-paginate="collection.products" li-paginate:by="50" class="filter_layout" by="50"><div class="filter_feed"><div class="filter-contain-wip"><div class="filter-div"><div class="nav-text filter">type</div></div><div class="line-mini"></div><div class="filter-div"><div class="nav-text filter">fabric</div></div></div><div class="filter_product-list-wrapper"><div class="filter_product-list">{% for product in collection.products %}    <div li-for="product in collection.products" class="filter_product-list-item">
+                                    
+                            {% for variant in product.variants %}    <div li-for="variant in product.variants" class="product-item_component">
+                                    
+                            <div class="product-item_image-link"><a li-object:href="product.url" href="{{ product.url }}" class="product-item_image-wrapper w-inline-block"><div class="product-image-contain"><img src="{{ variant.featured_image | img_url: 'master }}" loading="lazy" li-object:src="variant.featured_image | img_url: 'master" alt="" class="product-image navy-pants fill">
+</div></a><div class="product-item_tag_list">{% if product.selected_or_first_available_variant.available != true %}    <div li-if="product.selected_or_first_available_variant.available != true" class="product-item_tag">
+    Not in Stock    </div>
+{% endif %}{% if product.compare_at_price_max > product.price %}    <div li-if="product.compare_at_price_max > product.price" class="product-item_tag is-red">
+    Sale    </div>
+{% endif %}</div></div>
+                            
+                            <a li-object:href="product.url" href="{{ product.url }}" class="product-text-contain w-inline-block"><div li-object="product.vendor" class="text-size-small">{{ product.vendor }}</div><div li-object="variant.title" class="heading-style-h4 text-weight-normal">{{ variant.title }}</div><div class="product-cloth-price">Hemp/Cotton Canvas</div><div class="product-item_price">{% if product.compare_at_price_max > product.price %}    <div li-if="product.compare_at_price_max > product.price">
+    <div li-object="product.compare_at_price | money" class="product-cloth-price text-style-strikethrough text-style-muted">{{ product.compare_at_price | money }}</div>    </div>
+{% endif %}<div li-object="product.price | money" class="product-cloth-price">{{ product.price | money }}</div></div></a>
+                            
+                        </div>
+{% endfor %}
+                            
+                        </div>
+{% endfor %}<div class="space"></div></div></div></div></div>{% endpaginate %}
+</div> {% schema %} {"tag":"section","name":"collection_products","class":"section_filters","presets":[{"name":"collection_products","category":"Liquify","blocks":[]}]} {% endschema %}
